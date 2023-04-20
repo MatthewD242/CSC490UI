@@ -15,7 +15,7 @@ using System.Diagnostics;
 
 namespace GUITest
 {
-    
+
     public partial class Form1 : Form
     {
         private string filePath = "";
@@ -134,6 +134,10 @@ namespace GUITest
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Text File|*.xml";
+            saveFileDialog.Title = "Save as XML File";
+            saveFileDialog.FileName = "FlightModel-" + myTextBox1.Text; // Set the default file name
             SerializeData(filePath);
         }
 
@@ -146,10 +150,11 @@ namespace GUITest
 
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                string filePath = saveFileDialog1.FileName;
+                filePath = saveFileDialog1.FileName;  // Update the filePath field
                 SerializeData(filePath);
             }
         }
+
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -205,45 +210,54 @@ namespace GUITest
 
 
         // ...
-
-
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-            try
-            {
-                ProcessStartInfo startInfo = new ProcessStartInfo();
-                startInfo.WorkingDirectory = Application.StartupPath;
-                startInfo.FileName = "python.exe";
-                startInfo.Arguments = "TEST.py";
-                startInfo.UseShellExecute = false;
-                startInfo.RedirectStandardOutput = true;
-                startInfo.CreateNoWindow = true;
-                startInfo.RedirectStandardError = true;
-
-                using (Process process = Process.Start(startInfo))
-                {
-                    using (StreamReader reader = process.StandardOutput)
-                    {
-                        string stderr = process.StandardError.ReadToEnd();
-                        string result = reader.ReadToEnd();
-                        textBox1.Text = result;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error running Python script: " + ex.Message);
-            }
-        }
-
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void label5_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+        
+
+       
+
+        private void pythonRunButton_Click(object sender, EventArgs e)
+        {
+            // code to execute when pythonRunButton is clicked
+            // Set up the process info for running the Python script
+            ProcessStartInfo start = new ProcessStartInfo();
+            start.FileName = "python.exe"; // The path to your Python interpreter
+            start.Arguments = "C:\\Users\\Mebox\\source\\repos\\GUITest\\GUITest\\TEST.py"; // The name of the Python script to execute
+            start.UseShellExecute = false;
+            start.RedirectStandardOutput = true;
+            using (Process process = Process.Start(start))
+            {
+                using (StreamReader reader = process.StandardOutput)
+                {
+                    string result = reader.ReadToEnd();
+                    textBox1.Text = result;
+                    
+                    
+                }                
+            }
+            callPicture();
+        }
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            
+        }
+        private void callPicture()
+        {
+            Image image = Image.FromFile("C:\\Users\\Mebox\\source\\repos\\GUITest\\GUITest\\foo.png");
+            pictureBox1.Image = image;
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
         }
     }
 }

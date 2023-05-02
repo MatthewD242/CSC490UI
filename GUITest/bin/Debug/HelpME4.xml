@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MyData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <dryMass>7</dryMass>
+  <pressure>24</pressure>
+  <mass>38</mass>
+  <drag>48</drag>
+  <modelName>50</modelName>
+  <massVTime>61</massVTime>
+  <thrustVTime>57</thrustVTime>
+</MyData>

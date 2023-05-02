@@ -1,0 +1,11 @@
+C:\Users\Mebox\source\repos\GUITest\GUITest\bin\Debug\GUITest.exe.config
+C:\Users\Mebox\source\repos\GUITest\GUITest\bin\Debug\GUITest.exe
+C:\Users\Mebox\source\repos\GUITest\GUITest\bin\Debug\GUITest.pdb
+C:\Users\Mebox\source\repos\GUITest\GUITest\obj\Debug\GUITest.csproj.AssemblyReference.cache
+C:\Users\Mebox\source\repos\GUITest\GUITest\obj\Debug\GUITest.csproj.SuggestedBindingRedirects.cache
+C:\Users\Mebox\source\repos\GUITest\GUITest\obj\Debug\GUITest.Form1.resources
+C:\Users\Mebox\source\repos\GUITest\GUITest\obj\Debug\GUITest.Properties.Resources.resources
+C:\Users\Mebox\source\repos\GUITest\GUITest\obj\Debug\GUITest.csproj.GenerateResource.cache
+C:\Users\Mebox\source\repos\GUITest\GUITest\obj\Debug\GUITest.csproj.CoreCompileInputs.cache
+C:\Users\Mebox\source\repos\GUITest\GUITest\obj\Debug\GUITest.exe
+C:\Users\Mebox\source\repos\GUITest\GUITest\obj\Debug\GUITest.pdb

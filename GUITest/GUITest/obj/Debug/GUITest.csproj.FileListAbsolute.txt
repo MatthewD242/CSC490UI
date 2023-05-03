@@ -9,4 +9,3 @@ C:\Users\Mebox\source\repos\GUITest\GUITest\obj\Debug\GUITest.csproj.GenerateRes
 C:\Users\Mebox\source\repos\GUITest\GUITest\obj\Debug\GUITest.csproj.CoreCompileInputs.cache
 C:\Users\Mebox\source\repos\GUITest\GUITest\obj\Debug\GUITest.exe
 C:\Users\Mebox\source\repos\GUITest\GUITest\obj\Debug\GUITest.pdb
-C:\Users\Mebox\source\repos\GUITest\GUITest\obj\Debug\GUITest.PythonOutputForm.resources

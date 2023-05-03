@@ -19,7 +19,7 @@ namespace GUITest
     public partial class Form1 : Form
     {
         private string filePath = "";
-
+        private int currentIndex = 0;
         private MyData DeserializeData(string path)
         {
             MyData data = null;
@@ -42,6 +42,7 @@ namespace GUITest
         public Form1()
         {
             InitializeComponent();
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -55,6 +56,7 @@ namespace GUITest
                     numericUpDown2.Value = decimal.Parse(data.pressure);
                     numericUpDown3.Value = decimal.Parse(data.mass);
                     numericUpDown4.Value = decimal.Parse(data.drag);
+                    numericUpDown5.Value = decimal.Parse(data.time);
                     myTextBox1.Text = data.modelName;
                     textBox5.Text = data.massVTime;
                     textBox3.Text = data.thrustVTime;
@@ -76,6 +78,7 @@ namespace GUITest
             data.pressure = numericUpDown2.Value.ToString();
             data.mass = numericUpDown3.Value.ToString();
             data.drag = numericUpDown4.Value.ToString();
+            data.time = numericUpDown5.Value.ToString();
             data.modelName = myTextBox1.Text;
             data.massVTime = textBox5.Text;
             data.thrustVTime = textBox3.Text;
@@ -92,6 +95,7 @@ namespace GUITest
                 Console.WriteLine("Serialization complete. Press any key to exit.");
                 Console.Read();
                 MessageBox.Show("Data saved successfully");
+               
             }
             catch (Exception ex)
             {
@@ -103,7 +107,6 @@ namespace GUITest
         }
 
 
-        private void label1_Click(object sender, EventArgs e) { }
         private void label1_Click_1(object sender, EventArgs e) { }
         private void label2_Click(object sender, EventArgs e) { }
         private void myTextBox1_TextChanged(object sender, EventArgs e) { }
@@ -129,6 +132,7 @@ namespace GUITest
             public string modelName;
             public string massVTime;
             public string thrustVTime;
+            public string time;
         }
 
 
@@ -151,9 +155,10 @@ namespace GUITest
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 filePath = saveFileDialog1.FileName;  // Update the filePath field
-                SerializeData(filePath);
+                SerializeData(filePath); // Pass the filePath to SerializeData
             }
         }
+
 
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
@@ -171,6 +176,7 @@ namespace GUITest
                     numericUpDown2.Value = decimal.Parse(data.pressure);
                     numericUpDown3.Value = decimal.Parse(data.mass);
                     numericUpDown4.Value = decimal.Parse(data.drag);
+                    numericUpDown5.Value = decimal.Parse(data.time);
                     myTextBox1.Text = data.modelName;
                     textBox5.Text = data.massVTime;
                     textBox3.Text = data.thrustVTime;
@@ -224,40 +230,59 @@ namespace GUITest
         {
 
         }
-        
-
-       
 
         private void pythonRunButton_Click(object sender, EventArgs e)
         {
-            // code to execute when pythonRunButton is clicked
-            // Set up the process info for running the Python script
-            ProcessStartInfo start = new ProcessStartInfo();
-            start.FileName = "python.exe"; // The path to your Python interpreter
-            start.Arguments = "C:\\Users\\Mebox\\source\\repos\\GUITest\\GUITest\\TEST.py"; // The name of the Python script to execute
-            start.UseShellExecute = false;
-            start.RedirectStandardOutput = true;
-            using (Process process = Process.Start(start))
+
+            if (filePath != "")
             {
-                using (StreamReader reader = process.StandardOutput)
-                {
-                    string result = reader.ReadToEnd();
-                    textBox1.Text = result;
-                    
-                    
-                }                
+                string location = @".\\rocketSimFinal\\rocketSimFinal\\rocketSimFinal.py";
+                // code to execute when pythonRunButton is clicked
+                // Set up the process info for running the Python script
+                ProcessStartInfo start = new ProcessStartInfo();
+                start.FileName = "python.exe"; // path to your Python installation
+                start.Arguments = ".\\rocketSimFinal\\rocketSimFinal\\rocketSimFinal.py";
+                start.UseShellExecute = false;
+                start.RedirectStandardOutput = true;
+                start.WorkingDirectory = Path.GetDirectoryName(location);
+                Process process = Process.Start(start);
+                StreamReader reader = process.StandardOutput;
+                process.WaitForExit();
+                string result = reader.ReadToEnd();
+                textBox1.Text = result;
+                Image image1 = Image.FromFile("C:\\Users\\Mebox\\source\\repos\\GUITest\\GUITest\\rocketSimFinal\\rocketSimFinal\\altitude.png");
+                Image image2 = Image.FromFile("C:\\Users\\Mebox\\source\\repos\\GUITest\\GUITest\\rocketSimFinal\\rocketSimFinal\\velocity.png");
+
+                imageList1.Images.Add(image1);
+                imageList1.Images.Add(image2);
+
+                pictureBox1.Image = imageList1.Images[0];
             }
-            callPicture();
         }
+
+
+
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             
         }
-        private void callPicture()
+
+        private void button1_Click(object sender, EventArgs e)
         {
-            Image image = Image.FromFile("C:\\Users\\Mebox\\source\\repos\\GUITest\\GUITest\\foo.png");
-            pictureBox1.Image = image;
-            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            if (imageList1.Images.Count > 0)
+            {
+                currentIndex = (currentIndex + 1) % imageList1.Images.Count;
+                pictureBox1.Image = imageList1.Images[currentIndex];
+            }
+            else
+            {
+                textBox1.Text = "NO IMAGES FOUND";
+            }
+        }
+
+        private void numericUpDown5_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

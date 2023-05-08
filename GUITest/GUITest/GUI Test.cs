@@ -15,11 +15,13 @@ using System.Diagnostics;
 
 namespace GUITest
 {
-
     public partial class Form1 : Form
     {
+        //Initializes variables filePath and currentIndex for later use
         private string filePath = "";
         private int currentIndex = 0;
+
+        //This part deserializes from XML to the UI to load into the input boxes
         private MyData DeserializeData(string path)
         {
             MyData data = null;
@@ -47,6 +49,7 @@ namespace GUITest
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            //Uses the desrialization class to put any values into the UI
             if (File.Exists(filePath))
             {
                 MyData data = DeserializeData(filePath);
@@ -66,6 +69,9 @@ namespace GUITest
 
         private bool hasOpenFile = false;
 
+
+
+        //Serializes data to an XML file for the Python to use
         private void SerializeData(string path)
         {
             if (path == null)
@@ -85,7 +91,7 @@ namespace GUITest
 
             try
             {
-                // Serialize the object to an XML file
+                //Serialize the object to an XML file
                 XmlSerializer serializer = new XmlSerializer(typeof(MyData));
                 using (System.IO.StreamWriter file = new System.IO.StreamWriter(path))
                 {
@@ -95,7 +101,7 @@ namespace GUITest
                 Console.WriteLine("Serialization complete. Press any key to exit.");
                 Console.Read();
                 MessageBox.Show("Data saved successfully");
-               
+
             }
             catch (Exception ex)
             {
@@ -106,23 +112,7 @@ namespace GUITest
             filePath = path;
         }
 
-
-        private void label1_Click_1(object sender, EventArgs e) { }
-        private void label2_Click(object sender, EventArgs e) { }
-        private void myTextBox1_TextChanged(object sender, EventArgs e) { }
-        private void label3_Click(object sender, EventArgs e) { }
-        private void label4_Click(object sender, EventArgs e) { }
-        private void numericUpDown3_ValueChanged(object sender, EventArgs e) { }
-        private void numericUpDown4_ValueChanged(object sender, EventArgs e) { }
-        private void label6_Click(object sender, EventArgs e) { }
-        private void textBox5_TextChanged(object sender, EventArgs e) { }
-
-        private void numericUpDown2_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-        private void textBox3_TextChanged(object sender, EventArgs e) { }
-        private void numericUpDown1_ValueChanged(object sender, EventArgs e) { }
+        //Declares more varaibles for various uses
         public class MyData
         {
             public string dryMass;
@@ -135,7 +125,7 @@ namespace GUITest
             public string time;
         }
 
-
+        //This is so that a XMl file can be overwritten
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
@@ -144,7 +134,7 @@ namespace GUITest
             saveFileDialog.FileName = "FlightModel-" + myTextBox1.Text; // Set the default file name
             SerializeData(filePath);
         }
-
+        //To create a new XML file
         private void saveAsToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
@@ -159,8 +149,7 @@ namespace GUITest
             }
         }
 
-
-
+        //Opens an XML file
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -187,6 +176,7 @@ namespace GUITest
             }
         }
 
+        //Sets myTextBox1 to only accept strings
         private void myTextBox1_Validating(object sender, CancelEventArgs e)
         {
             if (!string.IsNullOrEmpty(myTextBox1.Text) && !myTextBox1.Text.All(char.IsLetter))
@@ -195,7 +185,7 @@ namespace GUITest
                 e.Cancel = true;
             }
         }
-
+        //Same as above, but for textBox5
         private void textBox5_Validating(object sender, CancelEventArgs e)
         {
             if (!string.IsNullOrEmpty(textBox5.Text) && !textBox5.Text.All(char.IsLetter))
@@ -204,7 +194,7 @@ namespace GUITest
                 e.Cancel = true;
             }
         }
-
+        //Same asa above for textBox3
         private void textBox3_Validating(object sender, CancelEventArgs e)
         {
             if (!string.IsNullOrEmpty(textBox3.Text) && !textBox3.Text.All(char.IsLetter))
@@ -213,35 +203,29 @@ namespace GUITest
                 e.Cancel = true;
             }
         }
-
-
-        // ...
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        
+        //This loads the Python File, runs it, and displays the output
+        //The console output is put into a textbox, while the images
+        //Are loaded into a picture box, which can be cycled through
+        //It also has a small amount of code so that the image that
+        //Is being displayed is labeled
         private void pythonRunButton_Click(object sender, EventArgs e)
+
         {
 
             if (filePath != "")
+
             {
-                string location = @".\\rocketSimFinal\\rocketSimFinal\\rocketSimFinal.py";
-                // code to execute when pythonRunButton is clicked
-                // Set up the process info for running the Python script
+
+                string fileName = "FlightModel-" + myTextBox1.Text + ".xml";
+
+                string location = @"C:\Users\Mebox\source\repos\GUITest\GUITest\rocketSimFinal\rocketSimFinal\rocketSimFinal.py";
+
                 ProcessStartInfo start = new ProcessStartInfo();
-                start.FileName = "python.exe"; // path to your Python installation
-                start.Arguments = ".\\rocketSimFinal\\rocketSimFinal\\rocketSimFinal.py";
+
+                start.FileName = "python.exe"; // Path to Python
+
+                start.Arguments = @"C:\Users\Mebox\source\repos\GUITest\GUITest\rocketSimFinal\rocketSimFinal\rocketSimFinal.py " + fileName;
                 start.UseShellExecute = false;
                 start.RedirectStandardOutput = true;
                 start.WorkingDirectory = Path.GetDirectoryName(location);
@@ -249,24 +233,30 @@ namespace GUITest
                 StreamReader reader = process.StandardOutput;
                 process.WaitForExit();
                 string result = reader.ReadToEnd();
-                textBox1.Text = result;
-                Image image1 = Image.FromFile("C:\\Users\\Mebox\\source\\repos\\GUITest\\GUITest\\rocketSimFinal\\rocketSimFinal\\altitude.png");
-                Image image2 = Image.FromFile("C:\\Users\\Mebox\\source\\repos\\GUITest\\GUITest\\rocketSimFinal\\rocketSimFinal\\velocity.png");
 
-                imageList1.Images.Add(image1);
+                textBox1.Text = result;
+                Image image2 = Image.FromFile(@"C:\Users\Mebox\source\repos\GUITest\GUITest\rocketSimFinal\rocketSimFinal\altitude.png");
+                Image image3 = Image.FromFile(@"C:\Users\Mebox\source\repos\GUITest\GUITest\rocketSimFinal\rocketSimFinal\velocity.png");
+
                 imageList1.Images.Add(image2);
+                imageList1.Images.Add(image3);
+
+
 
                 pictureBox1.Image = imageList1.Images[0];
+                if (imageList1.Images.Count == 1)
+                {
+                    textBox2.Text = "Altitude:";
+                }
+
+                else if (imageList1.Images.Count == 2)
+                {
+                    textBox2.Text = "Velocity:";
+                }
             }
+
         }
-
-
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-            
-        }
-
+        //Cycles images, as mentioned above
         private void button1_Click(object sender, EventArgs e)
         {
             if (imageList1.Images.Count > 0)
@@ -278,11 +268,6 @@ namespace GUITest
             {
                 textBox1.Text = "NO IMAGES FOUND";
             }
-        }
-
-        private void numericUpDown5_ValueChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -57,6 +57,7 @@
             this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
             this.numericUpDown5 = new System.Windows.Forms.NumericUpDown();
             this.label8 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
@@ -77,7 +78,6 @@
             this.label1.Size = new System.Drawing.Size(312, 32);
             this.label1.TabIndex = 1;
             this.label1.Text = "Model Name";
-            this.label1.Click += new System.EventHandler(this.label1_Click_1);
             // 
             // label2
             // 
@@ -90,7 +90,6 @@
             this.label2.Size = new System.Drawing.Size(297, 38);
             this.label2.TabIndex = 2;
             this.label2.Text = "Rocket Dry Mass";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // myTextBox1
             // 
@@ -103,7 +102,6 @@
             this.myTextBox1.Size = new System.Drawing.Size(219, 39);
             this.myTextBox1.TabIndex = 5;
             this.myTextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.myTextBox1.TextChanged += new System.EventHandler(this.myTextBox1_TextChanged);
             this.myTextBox1.Validating += new System.ComponentModel.CancelEventHandler(this.myTextBox1_Validating);
             // 
             // menuStrip1
@@ -160,7 +158,6 @@
             this.label3.Size = new System.Drawing.Size(253, 38);
             this.label3.TabIndex = 8;
             this.label3.Text = "Rocket Pressue";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label4
             // 
@@ -173,7 +170,6 @@
             this.label4.Size = new System.Drawing.Size(253, 38);
             this.label4.TabIndex = 10;
             this.label4.Text = "Reaction Mass";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // label6
             // 
@@ -186,7 +182,6 @@
             this.label6.Size = new System.Drawing.Size(263, 38);
             this.label6.TabIndex = 14;
             this.label6.Text = "Effective Drag";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // textBox5
             // 
@@ -199,7 +194,6 @@
             this.textBox5.Size = new System.Drawing.Size(219, 39);
             this.textBox5.TabIndex = 16;
             this.textBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox5.TextChanged += new System.EventHandler(this.textBox5_TextChanged);
             this.textBox5.Validating += new System.ComponentModel.CancelEventHandler(this.textBox5_Validating);
             // 
             // label7
@@ -213,7 +207,6 @@
             this.label7.Size = new System.Drawing.Size(354, 30);
             this.label7.TabIndex = 15;
             this.label7.Text = "Mass v Time Function";
-            this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
             // textBox3
             // 
@@ -226,7 +219,6 @@
             this.textBox3.Size = new System.Drawing.Size(219, 39);
             this.textBox3.TabIndex = 18;
             this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             this.textBox3.Validating += new System.ComponentModel.CancelEventHandler(this.textBox3_Validating);
             // 
             // label5
@@ -240,7 +232,6 @@
             this.label5.Size = new System.Drawing.Size(238, 38);
             this.label5.TabIndex = 17;
             this.label5.Text = "Thrust v Time Function";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // numericUpDown1
             // 
@@ -254,7 +245,6 @@
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(94, 40);
             this.numericUpDown1.TabIndex = 19;
-            this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
             // 
             // numericUpDown2
             // 
@@ -268,7 +258,6 @@
             this.numericUpDown2.Name = "numericUpDown2";
             this.numericUpDown2.Size = new System.Drawing.Size(95, 40);
             this.numericUpDown2.TabIndex = 20;
-            this.numericUpDown2.ValueChanged += new System.EventHandler(this.numericUpDown2_ValueChanged);
             // 
             // numericUpDown3
             // 
@@ -282,7 +271,6 @@
             this.numericUpDown3.Name = "numericUpDown3";
             this.numericUpDown3.Size = new System.Drawing.Size(95, 40);
             this.numericUpDown3.TabIndex = 21;
-            this.numericUpDown3.ValueChanged += new System.EventHandler(this.numericUpDown3_ValueChanged);
             // 
             // numericUpDown4
             // 
@@ -302,7 +290,6 @@
             this.numericUpDown4.Name = "numericUpDown4";
             this.numericUpDown4.Size = new System.Drawing.Size(94, 40);
             this.numericUpDown4.TabIndex = 22;
-            this.numericUpDown4.ValueChanged += new System.EventHandler(this.numericUpDown4_ValueChanged);
             // 
             // runButton
             // 
@@ -323,7 +310,6 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(478, 393);
             this.textBox1.TabIndex = 24;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // pictureBox1
             // 
@@ -334,7 +320,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 25;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // button1
             // 
@@ -372,7 +357,6 @@
             this.numericUpDown5.Name = "numericUpDown5";
             this.numericUpDown5.Size = new System.Drawing.Size(94, 40);
             this.numericUpDown5.TabIndex = 28;
-            this.numericUpDown5.ValueChanged += new System.EventHandler(this.numericUpDown5_ValueChanged);
             // 
             // label8
             // 
@@ -386,6 +370,17 @@
             this.label8.TabIndex = 27;
             this.label8.Text = "Time Inteval";
             // 
+            // textBox2
+            // 
+            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox2.Location = new System.Drawing.Point(1502, 534);
+            this.textBox2.Multiline = true;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
+            this.textBox2.Size = new System.Drawing.Size(219, 39);
+            this.textBox2.TabIndex = 29;
+            //this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -393,6 +388,7 @@
             this.BackgroundImage = global::GUITest.Properties.Resources.asefasfca;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1856, 1010);
+            this.Controls.Add(this.textBox2);
             this.Controls.Add(this.numericUpDown5);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.button1);
@@ -460,6 +456,7 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker2;
         public System.Windows.Forms.NumericUpDown numericUpDown5;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox textBox2;
     }
 }
 
